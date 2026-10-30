@@ -1,0 +1,8 @@
+/* The sidebar width eases for 0.3s. Apex sizes the SVG in pixels and only
+   redraws after resize events stop, so the canvas has to track the card
+   during that ease. chart-theme.ts redraws once the transition ends. */
+.apexcharts-canvas,
+.apexcharts-svg {
+    width: 100% !important;
+    max-width: 100%;
+}

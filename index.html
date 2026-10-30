@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>AdminLTE 4 | React</title>
+    <link rel="icon" type="image/x-icon" href="favicon.svg" />
+    <script>
+      (() => {
+        'use strict';
+        const root = document.documentElement;
+        if (root.getAttribute('data-lte-color-mode') === 'off') {
+          return;
+        }
+        let appTheme = null;
+        try {
+          appTheme = localStorage.getItem('appTheme');
+        } catch {
+          // localStorage may be unavailable (private mode, sandboxed iframe).
+        }
+        const authored = root.getAttribute('data-bs-theme');
+        let scheme = 'light';
+        if (appTheme === 'dark' || appTheme === 'light') {
+          scheme = appTheme;
+        } else if (authored === 'dark' || authored === 'light') {
+          scheme = authored;
+        } else if (globalThis.matchMedia('(prefers-color-scheme: dark)').matches) {
+          scheme = 'dark';
+        }
+        root.setAttribute('data-bs-theme', scheme);
+        root.style.colorScheme = scheme;
+        if (scheme !== authored) {
+          root.setAttribute('data-lte-theme-resolved', '');
+        }
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#007bff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+    <meta name="title" content="AdminLTE 4 | React" />
+    <meta name="author" content="ColorlibHQ" />
+    <meta
+      name="description"
+      content="AdminLTE 4 admin shell re-platformed to React 19 + Vite, built with vanilla AdminLTE JS and designed with accessibility in mind."
+    />
+    <meta name="supported-color-schemes" content="light dark" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
